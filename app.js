@@ -1,8 +1,11 @@
 // @ts-ignore
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const dotenv = require('dotenv').config({
+    path: './login.env'
+})
 
-const {prefix, token} = require('./config.json');
+//const {prefix, token} = require('./config.json');
 
 client.on('message', async message => {
 
@@ -223,4 +226,4 @@ client.on('message', async message => {
 
 })
 
-client.login(token);
+client.login(process.env.token);
