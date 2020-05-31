@@ -1,6 +1,4 @@
 # Project exclude paths
 /node_modules/
 /config.json
-/public/
-/routes/
 /login.env
