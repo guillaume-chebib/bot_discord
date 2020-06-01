@@ -2,7 +2,8 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const dotenv = require('dotenv').config({
+let bd = require("./database/connexion.js") //connect to database
+const dotenv = require('dotenv').config({ //.env file
     path: './login.env'
 })
 
@@ -15,11 +16,18 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+bd.connect()
 
-//const {prefix, token} = require('./config.json');
 
 client.on('message', async message => {
 
+    await client.commands.get('%XP').execute(message,bd);
+
+    if(await message.content.startsWith('%classement')){ //launch the two functions
+        let args=[];
+        await args.push(client);
+        await client.commands.get('%classement').execute(message, bd);
+    }
 
     if(await message.content.startsWith('%roulette')){ //launch the two functions
         let args=[];
